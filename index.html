@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Orange Case</title>
+  <meta name="description" content="A portable cloud-native gaming rig and observability benchmark: same game, same telemetry, same chaos challenges. Only the backend changes.">
+  <meta property="og:title" content="The Orange Case">
+  <meta property="og:description" content="Same game. Same telemetry. Same chaos. Only the observability backend changes.">
+  <meta property="og:image" content="assets/logo.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand stencil" href="#"><img src="assets/favicon.svg" alt="">Orange Case</a>
+    <nav>
+      <a href="#what">What</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#stowaway">Stowaway</a>
+      <a href="#tour">Tour</a>
+      <a href="#vendors">Vendors</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="pill">KubeCon + CloudNativeCon Europe 2027 · Barcelona</span>
+        <h1 class="stencil">The Orange <span>Case</span></h1>
+        <p class="lede">A cloud-native party game in a hard case. Same game, same telemetry, same chaos challenges. Only the observability backend changes.</p>
+        <div class="cta">
+          <a class="btn primary" href="#challenges">See the challenges</a>
+          <a class="btn ghost" href="https://github.com/orange-case/JoustMania">JoustMania on GitHub</a>
+        </div>
+      </div>
+      <img src="assets/logo.png" width="520" height="532" alt="An orange hard-shell suitcase with ORANGE CASE stencilled on the lid">
+    </div>
+  </div>
+
+  <section id="what">
+    <div class="wrap">
+      <h2 class="stencil">What is it?</h2>
+      <p class="sub">Two meanings, one case: a physical orange hard case you can carry to a booth, and a reproducible test case for observability backends.</p>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">The game</span>
+          <h3>JoustMania</h3>
+          <p>Up to 25 players with motion controllers. Move too fast and you're out. Every swing, death and win is a span.</p>
+        </div>
+        <div class="card">
+          <span class="tag">The telemetry</span>
+          <h3>OpenTelemetry, all signals</h3>
+          <p>Traces, metrics and logs from every service, with a published, versioned attribute schema.</p>
+        </div>
+        <div class="card">
+          <span class="tag">The control plane</span>
+          <h3>OpenFeature + flagd</h3>
+          <p>Every challenge is a live flag flip, and the flip shows up as a span event on your own trace timeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="wrap">
+      <h2 class="stencil">Architecture</h2>
+      <p class="sub">Everything runs inside the case. The collector exports over OTLP/HTTP on port 443, one profile per backend, so venue firewalls aren't a problem.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 900 400" role="img" aria-label="Controllers feed the game services inside the case; the OpenTelemetry collector exports to in-case backends and to one external backend; flagd controls the challenges; stowaway adds synthetic load.">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0L10 5L0 10z" fill="currentColor" style="color: var(--muted)"/>
+            </marker>
+          </defs>
+          <rect class="case" x="150" y="20" width="520" height="360" rx="22"/>
+          <text x="170" y="50">The Orange Case</text>
+          <text class="small" x="170" y="68">Raspberry Pi 5 · Docker Compose</text>
+
+          <rect class="box" x="10" y="150" width="110" height="70" rx="10"/>
+          <text x="22" y="180">Motion</text>
+          <text x="22" y="200">controllers</text>
+
+          <rect class="box" x="180" y="120" width="170" height="130" rx="10"/>
+          <text x="196" y="150">Game services</text>
+          <text class="small" x="196" y="172">controller manager</text>
+          <text class="small" x="196" y="190">game coordinator</text>
+          <text class="small" x="196" y="208">menu · audio · agent</text>
+
+          <rect class="box" x="180" y="290" width="170" height="60" rx="10"/>
+          <text x="196" y="318">flagd</text>
+          <text class="small" x="196" y="336">challenge flags</text>
+
+          <rect class="hot" x="420" y="150" width="200" height="70" rx="10"/>
+          <text class="on-hot" x="436" y="180">OTel Collector</text>
+          <text class="on-hot small" x="436" y="200" style="fill:#fff">profiles · persistent queue</text>
+
+          <rect class="box" x="420" y="290" width="200" height="60" rx="10"/>
+          <text x="436" y="318">In-case backends</text>
+          <text class="small" x="436" y="336">Jaeger · VictoriaMetrics</text>
+
+          <rect class="box" x="420" y="60" width="200" height="56" rx="10"/>
+          <text x="436" y="86">stowaway</text>
+          <text class="small" x="436" y="104">synthetic load</text>
+
+          <rect class="box" x="720" y="150" width="170" height="70" rx="10"/>
+          <text x="736" y="180">Your backend</text>
+          <text class="small" x="736" y="200">OTLP/HTTP · 443</text>
+
+          <path class="arrow" d="M120 185H176"/>
+          <path class="arrow" d="M350 185H416"/>
+          <path class="arrow" d="M620 185H716"/>
+          <path class="arrow" d="M520 220V286"/>
+          <path class="arrow" d="M520 116V146"/>
+          <path class="arrow flag" d="M265 290V254"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="challenges">
+    <div class="wrap">
+      <h2 class="stencil">The challenges</h2>
+      <p class="sub">Three core challenges run live at every participating booth. Four extended ones run any time through the stowaway CLI.</p>
+      <div class="grid">
+        <div class="card tier1">
+          <span class="tag">Core · live</span>
+          <h3>Swing-to-screen latency</h3>
+          <p>A controller gets knocked out. How long until that death event appears in your UI? The clock is running.</p>
+        </div>
+        <div class="card tier1">
+          <span class="tag">Core · live</span>
+          <h3>Million-span match</h3>
+          <p>One match, one trace, about a million spans. Can your backend ingest it, sample it and render the waterfall?</p>
+        </div>
+        <div class="card tier1">
+          <span class="tag">Core · live</span>
+          <h3>Find the cheater</h3>
+          <p>A flag quietly makes one controller cheat. You have two minutes and your own tool to find out which one.</p>
+        </div>
+      </div>
+      <div class="grid" style="margin-top:20px">
+        <div class="card"><span class="tag">Extended</span><h3>Cardinality bomb</h3><p>High-cardinality per-swing and per-player metric attributes.</p></div>
+        <div class="card"><span class="tag">Extended</span><h3>Hostile Wi-Fi</h3><p>The uplink drops mid-match. Does everything backfill correctly when it comes back?</p></div>
+        <div class="card"><span class="tag">Extended</span><h3>Clock-skewed controllers</h3><p>Drifting timestamps: does your backend flag the skew or silently reorder spans?</p></div>
+        <div class="card"><span class="tag">Extended</span><h3>All-signals correlation</h3><p>Traces, metrics, logs, flag events and profiles from a single match.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stowaway">
+    <div class="wrap">
+      <h2 class="stencil">Stowaway: test before you meet the case</h2>
+      <p class="sub">Stowaway generates the same telemetry as the real case, so you can tune your ingest pipeline against your own endpoint well before the event. It's in development, so commands may still change.</p>
+<pre><code># run a core challenge against your own OTLP/HTTP endpoint
+docker run --rm ghcr.io/orange-case/stowaway \
+  run --challenge million-spans \
+      --endpoint https://otlp.example.com \
+      --header "Authorization=Bearer $TOKEN"</code></pre>
+      <p class="sub">Every synthetic span and metric carries <code>orangecase.synthetic=true</code>. Challenges: <code>swing-latency</code>, <code>million-spans</code>, <code>find-cheater</code>, <code>cardinality-bomb</code>, <code>hostile-wifi</code>, <code>clock-skew</code>.</p>
+    </div>
+  </section>
+
+  <section id="tour">
+    <div class="wrap">
+      <h2 class="stencil">KubeCon EU 2027 tour</h2>
+      <p class="sub">Play a round at participating booths and collect stamps in your Orange Case Passport. Visit three or more booths to unlock swag and a raffle entry. Players score; vendors are never ranked.</p>
+      <div class="placeholder">Booth schedule and map coming soon.</div>
+    </div>
+  </section>
+
+  <section id="vendors">
+    <div class="wrap">
+      <h2 class="stencil">For vendors</h2>
+      <p class="sub">This is a benchmark, not an ambush. The schema, the challenge definitions and stowaway are published at least six weeks before the event, so you can test against your own endpoint in advance.</p>
+      <ol class="steps">
+        <li><strong>Opt in</strong> with your booth number and a nominated Solutions Engineer for the live slot.</li>
+        <li><strong>Provide an OTLP/HTTP endpoint</strong> (TLS on 443) and an API key header. We set up one isolated exporter profile per vendor.</li>
+        <li><strong>Get the attribute schema</strong> early and pre-build your dashboards and queries.</li>
+        <li><strong>Dry-run with stowaway</strong> against your staging or production endpoint.</li>
+      </ol>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/orange-case">Opt-in form coming soon</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>The Orange Case · a JoustMania project</span>
+    <span><a href="https://github.com/orange-case">github.com/orange-case</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
