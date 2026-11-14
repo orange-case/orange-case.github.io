@@ -39,6 +39,62 @@
   </div>
 </main>
 
+<section id="architecture">
+  <div class="wrap wide">
+    <h2 class="stencil">What's inside</h2>
+    <p class="sub">Everything runs inside the case. The collector sends the same telemetry to your backend over OTLP/HTTP on port 443.</p>
+    <div class="diagram">
+      <svg viewBox="0 0 900 400" role="img" aria-label="Controllers feed the game services inside the case; the OpenTelemetry collector exports to in-case backends and to one external backend; flagd controls the challenges; stowaway adds synthetic load.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="#8a7f75"/>
+          </marker>
+        </defs>
+        <rect class="case-outline" x="150" y="20" width="520" height="360" rx="22"/>
+        <text x="170" y="50">The Orange Case</text>
+        <text class="small" x="170" y="68">Raspberry Pi 5 · Docker Compose</text>
+
+        <rect class="box" x="10" y="150" width="110" height="70" rx="10"/>
+        <text x="22" y="180">Motion</text>
+        <text x="22" y="200">controllers</text>
+
+        <rect class="box" x="180" y="120" width="170" height="130" rx="10"/>
+        <text x="196" y="150">Game services</text>
+        <text class="small" x="196" y="172">controller manager</text>
+        <text class="small" x="196" y="190">game coordinator</text>
+        <text class="small" x="196" y="208">menu · audio · agent</text>
+
+        <rect class="box" x="180" y="290" width="170" height="60" rx="10"/>
+        <text x="196" y="318">flagd</text>
+        <text class="small" x="196" y="336">challenge flags</text>
+
+        <rect class="hot" x="420" y="150" width="200" height="70" rx="10"/>
+        <text class="on-hot" x="436" y="180">OTel Collector</text>
+        <text class="on-hot small" x="436" y="200">profiles · persistent queue</text>
+
+        <rect class="box" x="420" y="290" width="200" height="60" rx="10"/>
+        <text x="436" y="318">In-case backends</text>
+        <text class="small" x="436" y="336">Jaeger · VictoriaMetrics</text>
+
+        <rect class="box" x="420" y="60" width="200" height="56" rx="10"/>
+        <text x="436" y="86">stowaway</text>
+        <text class="small" x="436" y="104">synthetic load</text>
+
+        <rect class="box you" x="720" y="150" width="170" height="70" rx="10"/>
+        <text x="736" y="180">Your backend</text>
+        <text class="small" x="736" y="200">OTLP/HTTP · 443</text>
+
+        <path class="arrow" d="M120 185H176"/>
+        <path class="arrow" d="M350 185H416"/>
+        <path class="arrow" d="M620 185H716"/>
+        <path class="arrow" d="M520 220V286"/>
+        <path class="arrow" d="M520 116V146"/>
+        <path class="arrow flag" d="M265 290V254"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <span>The Orange Case · OpenTelemetry · OpenFeature</span>
