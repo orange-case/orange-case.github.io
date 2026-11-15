@@ -10,6 +10,7 @@ Plain HTML and CSS, no build step:
 - `assets/logo.png`, `assets/favicon.svg`: brand assets (`logo.png` is the original and the fallback image)
 - `assets/logo.webp`: optimised copy of the logo that the pages load first, via `<picture>`
 - `assets/social-card.png`: 1200x630 link preview image referenced by `og:image`
+- `assets/fonts/`: self-hosted Inter and Big Shoulders Stencil Display (Latin subset, WOFF2), so the pages load nothing from third parties. The fonts are under the SIL Open Font License (`OFL-*.txt` next to them), not the repository's Apache 2.0 licence
 
 Colours: `--orange` is for fills, the diagram and the glow. Orange text uses `--orange-text` and the primary button uses `--orange-btn`, so both meet WCAG AA in light and dark themes.
 
