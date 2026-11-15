@@ -7,7 +7,14 @@
   <meta name="description" content="Same game. Same telemetry. Same chaos. Only the observability backend changes. Coming to KubeCon EU 2027, Barcelona.">
   <meta property="og:title" content="The Orange Case">
   <meta property="og:description" content="Same game. Same telemetry. Same chaos. Only the backend changes. Barcelona, 2027.">
-  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://orange-case.github.io/">
+  <meta property="og:image" content="https://orange-case.github.io/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="An orange hard-shell suitcase next to the words The Orange Case">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://orange-case.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +25,10 @@
 
 <main class="teaser">
   <div class="wrap">
-    <img class="case" src="assets/logo.png" width="520" height="532" alt="An orange hard-shell suitcase with ORANGE CASE stencilled on the lid">
+    <picture>
+      <source srcset="assets/logo.webp" type="image/webp">
+      <img class="case" src="assets/logo.png" width="520" height="532" alt="An orange hard-shell suitcase with ORANGE CASE stencilled on the lid">
+    </picture>
 
     <p class="kicker">KubeCon + CloudNativeCon Europe 2027 · Barcelona</p>
     <h1 class="stencil">Something is <span>in the case.</span></h1>
@@ -43,7 +53,7 @@
   <div class="wrap wide">
     <h2 class="stencil">What's inside</h2>
     <p class="sub">Everything runs inside the case. The collector sends the same telemetry to your backend over OTLP/HTTP on port 443.</p>
-    <div class="diagram">
+    <div class="diagram" tabindex="0" role="group" aria-label="Architecture diagram, scrolls sideways on small screens">
       <svg viewBox="0 0 900 400" role="img" aria-label="Controllers feed the game services inside the case; the OpenTelemetry collector exports to in-case backends and to one external backend; flagd controls the challenges; stowaway adds synthetic load.">
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -70,7 +80,7 @@
 
         <rect class="hot" x="420" y="150" width="200" height="70" rx="10"/>
         <text class="on-hot" x="436" y="180">OTel Collector</text>
-        <text class="on-hot small" x="436" y="200">profiles · persistent queue</text>
+        <text class="on-hot small" x="436" y="200">traces · metrics · logs</text>
 
         <rect class="box" x="420" y="290" width="200" height="60" rx="10"/>
         <text x="436" y="318">In-case backends</text>
@@ -92,6 +102,7 @@
         <path class="arrow flag" d="M265 290V254"/>
       </svg>
     </div>
+    <p class="scroll-hint" aria-hidden="true">Scroll sideways to see the whole diagram →</p>
   </div>
 </section>
 

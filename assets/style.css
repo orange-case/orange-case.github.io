@@ -1,6 +1,11 @@
 :root {
   --orange: #e8701a;
   --orange-deep: #c85a10;
+  /* --orange is for fills, the diagram and the glow. Text uses --orange-text,
+     buttons with a white label use --orange-btn (both WCAG AA). */
+  --orange-text: #a34505;
+  --orange-btn: #b04a08;
+  --orange-btn-hover: #9c4204;
   --ink: #2f2f2f;
   --bg: #fbf7f2;
   --muted: #6b625a;
@@ -9,6 +14,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --orange-text: #ff8a3a;
     --ink: #f3ece4;
     --bg: #171412;
     --muted: #b3a79b;
@@ -17,6 +23,7 @@
   }
 }
 :root[data-theme="dark"] {
+  --orange-text: #ff8a3a;
   --ink: #f3ece4;
   --bg: #171412;
   --muted: #b3a79b;
@@ -36,7 +43,7 @@ body {
   color: var(--ink);
   font: 17px/1.6 "Inter", system-ui, sans-serif;
 }
-a { color: var(--orange); }
+a { color: var(--orange-text); }
 
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
 .stencil { font-family: "Big Shoulders Stencil Display", "Inter", sans-serif; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
@@ -51,29 +58,34 @@ a { color: var(--orange); }
 @keyframes float { 50% { transform: translateY(-10px) rotate(-1.5deg); } }
 @media (prefers-reduced-motion: reduce) { .case { animation: none; } }
 
-.kicker { margin: 28px 0 8px; color: var(--orange); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+.kicker { margin: 28px 0 8px; color: var(--orange-text); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
 h1 { font-size: clamp(44px, 9vw, 84px); line-height: .95; margin: 0 0 18px; }
-h1 span { color: var(--orange); }
+h1 span { color: var(--orange-text); }
 .lede { font-size: clamp(18px, 2.6vw, 22px); color: var(--muted); margin: 0 auto 36px; }
 
 .challenges { list-style: none; padding: 0; margin: 0 auto 36px; display: grid; gap: 10px; max-width: 420px; text-align: left; }
 .challenges li { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; font-weight: 600; }
-.challenges li span { color: var(--orange); font-size: 26px; line-height: 1; }
+.challenges li span { color: var(--orange-text); font-size: 26px; line-height: 1; }
 
 .soon { font-size: 28px; color: var(--muted); margin: 0 0 20px; letter-spacing: .12em; }
 
 .cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .btn { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 2px solid var(--orange); }
-.btn.primary { background: var(--orange); color: #fff; }
-.btn.primary:hover { background: var(--orange-deep); border-color: var(--orange-deep); }
-.btn.ghost { color: var(--orange); }
+.btn.primary { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
+.btn.primary:hover { background: var(--orange-btn-hover); border-color: var(--orange-btn-hover); }
+.btn.ghost { color: var(--orange-text); }
 
 section { padding: 56px 0; border-top: 1px solid var(--line); }
 .wrap.wide { max-width: 1000px; }
 section h2 { font-size: clamp(32px, 5vw, 48px); margin: 0 0 8px; text-align: center; }
 section .sub { color: var(--muted); margin: 0 auto 28px; max-width: 56ch; text-align: center; }
-.diagram { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: color-mix(in srgb, var(--bg) 85%, #fff); }
-.diagram svg { width: 100%; height: auto; display: block; }
+.diagram { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: color-mix(in srgb, var(--bg) 85%, #fff); overflow-x: auto; }
+.diagram:focus-visible { outline: 2px solid var(--orange-text); outline-offset: 2px; }
+/* Below 840px the diagram keeps its size and scrolls inside its box, so the
+   12px labels never render smaller than about 11px. */
+.diagram svg { width: 100%; min-width: 840px; height: auto; display: block; }
+.scroll-hint { display: none; margin: 10px 0 0; color: var(--muted); font-size: 13px; text-align: center; }
+@media (max-width: 905px) { .scroll-hint { display: block; } }
 .diagram text { fill: var(--ink); font: 600 14px "Inter", sans-serif; }
 .diagram .small { font-weight: 400; font-size: 12px; fill: var(--muted); }
 .diagram .box { fill: var(--bg); stroke: var(--line); stroke-width: 2; }
