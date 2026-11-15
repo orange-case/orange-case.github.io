@@ -92,7 +92,7 @@ section .sub { color: var(--muted); margin: 0 auto 28px; max-width: 56ch; text-a
 .diagram .box.you { stroke: var(--orange); }
 .diagram .case-outline { fill: none; stroke: var(--orange); stroke-width: 3; stroke-dasharray: 8 6; }
 .diagram .hot { fill: var(--orange); }
-.diagram text.on-hot { fill: #fff; }
+.diagram text.on-hot { fill: #1f1a16; }
 .diagram .arrow { stroke: #8a7f75; stroke-width: 2; fill: none; marker-end: url(#arr); }
 .diagram .flag { stroke: var(--orange); stroke-dasharray: 4 4; }
 
