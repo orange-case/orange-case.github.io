@@ -35,9 +35,9 @@
     <p class="lede">Same game. Same telemetry. Same chaos.<br>Only the observability backend changes.</p>
 
     <ul class="challenges">
-      <li><span class="stencil">01</span> Can you see the swing?</li>
-      <li><span class="stencil">02</span> How deep can you go?</li>
-      <li><span class="stencil">03</span> What is happening?</li>
+      <li><a href="#c1"><span class="stencil">01</span> Can you see the swing?</a></li>
+      <li><a href="#c2"><span class="stencil">02</span> How deep can you go?</a></li>
+      <li><a href="#challenges"><span class="stencil">+4</span> More in the case</a></li>
     </ul>
 
     <p class="soon stencil">Opening soon</p>
@@ -48,6 +48,52 @@
     </div>
   </div>
 </main>
+
+<section id="challenges">
+  <div class="wrap wide">
+    <h2 class="stencil">The challenges</h2>
+    <p class="sub">Every backend gets the same game and the same telemetry through one gateway. Each challenge asks one question, and the answers sit side by side. Nothing is ranked.</p>
+    <ol class="cards">
+      <li id="c1">
+        <span class="num stencil">01</span>
+        <h3>Can you see the swing?</h3>
+        <p class="tag">High-density metrics</p>
+        <p>Each player's motion is sent as a metric about every 100&nbsp;ms. In the seconds before a player is knocked out, does the backend keep that detail, smooth it into coarse steps, or lose it?</p>
+      </li>
+      <li id="c2">
+        <span class="num stencil">02</span>
+        <h3>How deep can you go?</h3>
+        <p class="tag">Trace scale</p>
+        <p>One game is one trace, and every round makes it bigger: 10&nbsp;thousand spans, then 100&nbsp;thousand, then a million. Up to which round can the backend still show the whole trace?</p>
+      </li>
+      <li id="c3">
+        <span class="num stencil">03</span>
+        <h3>Where did it go?</h3>
+        <p class="tag">Event structure</p>
+        <p>The same moments, a player's warning and their death, are sent in three shapes: as a span, a span event and a log event. Does the backend find the same moment in every shape?</p>
+      </li>
+      <li id="c4">
+        <span class="num stencil">04</span>
+        <h3>Who saved them?</h3>
+        <p class="tag">Cross-trace correlation</p>
+        <p>The AI game master makes its decision in one trace; the effect, like a shield on a player, lands in the game's trace. Can the backend join the two through a shared id and tell whether the player survived?</p>
+      </li>
+      <li id="c5">
+        <span class="num stencil">05</span>
+        <h3>What is happening?</h3>
+        <p class="tag">AI dashboard generation</p>
+        <p>The same published prompts go to each backend's own AI assistant to build the game dashboard. Every panel is then checked against what really happened in the game.</p>
+      </li>
+      <li id="c6">
+        <span class="num stencil">06</span>
+        <h3>What did the game master cost?</h3>
+        <p class="tag">GenAI cost</p>
+        <p>The AI game master calls a language model. How far down can the backend break down what those calls cost: in total, per caller, per game, per decision?</p>
+      </li>
+    </ol>
+    <p class="note">The challenges are still being built, so not all of them are playable yet.</p>
+  </div>
+</section>
 
 <section id="architecture">
   <div class="wrap wide">
