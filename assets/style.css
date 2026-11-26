@@ -123,5 +123,9 @@ section .note { color: var(--muted); font-size: 15px; margin: 24px auto 0; text-
 .diagram .arrow { stroke: #8a7f75; stroke-width: 2; fill: none; marker-end: url(#arr); }
 .diagram .flag { stroke: var(--orange); stroke-dasharray: 4 4; }
 
+.sponsor-slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; max-width: 420px; min-height: 140px; margin: 24px auto 0; padding: 24px 16px; border: 2px dashed color-mix(in srgb, var(--orange) 55%, var(--line)); border-radius: 14px; color: var(--muted); text-align: center; text-decoration: none; }
+.sponsor-slot:hover, .sponsor-slot:focus-visible { border-color: var(--orange); }
+.sponsor-cta { color: var(--orange-text); font-weight: 600; }
+
 footer { padding: 24px 0 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer .wrap { max-width: 1080px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
